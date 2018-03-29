@@ -1,21 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { KanappkaModule } from './appka/kanappka.module';
+import { RouterModule, Routes } from '@angular/router';
 import { KanappkaComponent } from './appka/kanappka/kanappka.component';
-import { RoutesModule } from './app-routing.module';
+
+const routes: Routes = [
+  { path: 'kanappka', loadChildren: './appka/kanappka.module#KanappkaModule'},
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
   imports: [
     BrowserModule,
-    KanappkaModule,
-    RoutesModule
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    RouterModule
+  ]
 })
-export class AppModule { }
+export class RoutesModule {
+}
+
